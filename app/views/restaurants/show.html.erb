@@ -11,7 +11,8 @@
   <% @restaurant.reviews.each do |review| %>
     <li class="list-group-item">
       <p>
-        <%= review.rating %>/5 - <%= review.content %>
+        <%= review.rating %>/5 -
+        <%= review.content %>
       </p>
     </li>
   <% end %>

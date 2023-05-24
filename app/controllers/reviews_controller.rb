@@ -11,14 +11,20 @@ class ReviewsController < ApplicationController
     @review.save
     redirect_to restaurant_path(@restaurant)
   end
-end
 
-private
+  def destroy
+    @review = Review.find(params[:id])
+    @review.destroy
+    redirect_to restaurant_path(@review.restaurant), status: :see_other
+  end
 
-def set_restaurant
-  @restaurant = Restaurant.find(params[:restaurant_id])
-end
+  private
 
-def review_params
-  params.require(:review).permit(:rating, :content)
+  def set_restaurant
+    @restaurant = Restaurant.find(params[:restaurant_id])
+  end
+
+  def review_params
+    params.require(:review).permit(:rating, :content)
+  end
 end
